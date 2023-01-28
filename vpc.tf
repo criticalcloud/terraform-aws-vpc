@@ -8,25 +8,25 @@ resource "aws_vpc" "vpc_db" {
   }
 }
 
-# VPC WORKLOAD
-resource "aws_vpc" "vpc_workload" {
-  cidr_block         = var.cidr_vpc_workload
+# VPC app
+resource "aws_vpc" "vpc_app" {
+  cidr_block         = var.cidr_vpc_app
   enable_dns_support = true
 
   tags = {
-    Name = lower(var.vpc_name_workload)
+    Name = lower(var.vpc_name_app)
   }
 }
 
 # VPC PEERING
-resource "aws_vpc_peering_connection" "px_workload_db" {
+resource "aws_vpc_peering_connection" "px_app_db" {
   peer_owner_id = data.aws_caller_identity.current.account_id
   peer_vpc_id   = aws_vpc.vpc_db.id
-  vpc_id        = aws_vpc.vpc_workload.id
+  vpc_id        = aws_vpc.vpc_app.id
   auto_accept   = true
 
   tags = {
-    Name = "px-workload-db"
+    Name = "px-app-db"
   }
 }
 

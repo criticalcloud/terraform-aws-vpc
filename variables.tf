@@ -1,27 +1,27 @@
 # RANGE IP VPC DB
 variable "cidr_vpc_db" {}
 
-# RANGE IP VPC WORKLOAD
-variable "cidr_vpc_workload" {}
+# RANGE IP VPC app
+variable "cidr_vpc_app" {}
 
 # NAME VPC DB
 variable "vpc_name_db" {}
 
-# NAME VPC WORKLOAD
-variable "vpc_name_workload" {}
+# NAME VPC app
+variable "vpc_name_app" {}
 
 # RANGE IPS PRIVATE SUBNETES DB
 variable "cidr_block_private_sub_db" {
   type = list(any)
 }
 
-# RANGE IPS PRIVATE SUBNETES WORKLOAD
-variable "cidr_block_private_sub_workload" {
+# RANGE IPS PRIVATE SUBNETES app
+variable "cidr_block_private_sub_app" {
   type = list(any)
 }
 
-# RANGE IPS PUBLIC SUBNETES WORKLOAD
-variable "cidr_block_public_sub_workload" {
+# RANGE IPS PUBLIC SUBNETES app
+variable "cidr_block_public_sub_app" {
   type = list(any)
 }
 
@@ -40,13 +40,13 @@ variable "zone" {
 # PRIVATE SUBNET DB NAME
 variable "private_subnet_db_name" {}
 
-# PRIVATE SUBNET WORKLOAD NAME
-variable "private_subnet_workload_name" {}
+# PRIVATE SUBNET app NAME
+variable "private_subnet_app_name" {}
 
-# PUBLIC SUBNET WORKLOAD NAME
-variable "public_subnet_workload_name" {}
+# PUBLIC SUBNET app NAME
+variable "public_subnet_app_name" {}
 
-# PUBLIC SUBNET WORKLOAD NAME
+# PUBLIC SUBNET app NAME
 variable "create_public_sub" {
   default = true
 }

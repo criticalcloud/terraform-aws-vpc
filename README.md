@@ -6,13 +6,13 @@ Projeto para criação dos seguintes recursos de VPC:
 Recurso     | Descrição 
 ----------  |-----------
 **vpc data**      | VPC de Banco de Dados
-**vpc workload**      | VPC de workload
-**vpc peering** | Conexão entre as VPCs data e workload
+**vpc app**      | VPC de app
+**vpc peering** | Conexão entre as VPCs data e app
 **subnet data**  | 3 subnets privadas para a VPC data
-**subnet workload**  | 3 subnets privadas e uma publica para a VPC workload
+**subnet app**  | 3 subnets privadas e uma publica para a VPC app
 **internet gateway**       | Internet Gateway para acesso a internet
-**nat gateway workload**       | Nat Gateway para as subnets privadas da VPC workload
-**route table** | Rotas para as subnets das VPCs data e workload
+**nat gateway app**       | Nat Gateway para as subnets privadas da VPC app
+**route table** | Rotas para as subnets das VPCs data e app
 
 ## COMO UTILIZAR O PROJETO NETWORKING
 
@@ -48,25 +48,25 @@ Antes de executar o comando `terraform apply`, você deve ajustar as seguintes v
 
 `cidr_vpc_db:` Define o range IP da VPC DB.
 
-`cidr_vpc_workload:` Define o range IP da VPC WORKLOAD.
+`cidr_vpc_app:` Define o range IP da VPC app.
 
 `vpc_name_db:` Define o nome da VPC DB.
 
-`vpc_name_workload:` Define o nome da VPC WORKLOAD.
+`vpc_name_app:` Define o nome da VPC app.
 
 `cidr_block_private_sub_db:` Define o range IP das subnets privadas da VPC DB.
 
-`cidr_block_private_sub_workload:` Define o range IP das subnets privadas da VPC WORKLOAD.
+`cidr_block_private_sub_app:` Define o range IP das subnets privadas da VPC app.
 
-`cidr_block_public_sub_workload:` Define o range IP das subnets publicas da VPC WORKLOAD.
+`cidr_block_public_sub_app:` Define o range IP das subnets publicas da VPC app.
 
 `private_subnet_db_name:` Define o nome inicial das subnets privadas da VPC DB.
 
-`private_subnet_workload_name:` Define o nome inicial das subnets privadas da VPC WORKLOAD.
+`private_subnet_app_name:` Define o nome inicial das subnets privadas da VPC app.
 
-`public_subnet_workload_name:` Define o nome inicial das subnets publicas da VPC WORKLOAD.
+`public_subnet_app_name:` Define o nome inicial das subnets publicas da VPC app.
 
-`create_public_sub:` Define se as subnets publicas da VPC WORKLOAD serão criadas. Valores possiveis `true` ou `false`.
+`create_public_sub:` Define se as subnets publicas da VPC app serão criadas. Valores possiveis `true` ou `false`.
 
 `role_arn:` Define qual role AWS será utilizada para a conexão com o provider.
 

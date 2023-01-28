@@ -12,31 +12,31 @@ resource "aws_subnet" "private_subnet_db" {
   }
 }
 
-# PRIVATE SUBNETS WORKLOADS
-resource "aws_subnet" "private_subnet_workload" {
-  count                   = length(var.cidr_block_private_sub_workload)
-  vpc_id                  = aws_vpc.vpc_workload.id
-  cidr_block              = element(var.cidr_block_private_sub_workload, count.index)
+# PRIVATE SUBNETS appS
+resource "aws_subnet" "private_subnet_app" {
+  count                   = length(var.cidr_block_private_sub_app)
+  vpc_id                  = aws_vpc.vpc_app.id
+  cidr_block              = element(var.cidr_block_private_sub_app, count.index)
   availability_zone       = element(var.availability_zone, count.index)
   map_public_ip_on_launch = false
 
   tags = {
-    "Name" = lower(format("${var.private_subnet_workload_name}-%s", element(var.zone, count.index)))
+    "Name" = lower(format("${var.private_subnet_app_name}-%s", element(var.zone, count.index)))
     "Tier" = "Private"
     "kubernetes.io/role/internal-elb" = "1"
   }
 }
 
-# PUBLIC SUBNETS WORKLOADS
-resource "aws_subnet" "public_subnet_workload" {
-  count                   = var.create_public_sub == true ? length(var.cidr_block_public_sub_workload) : 0
-  vpc_id                  = aws_vpc.vpc_workload.id
-  cidr_block              = element(var.cidr_block_public_sub_workload, count.index)
+# PUBLIC SUBNETS appS
+resource "aws_subnet" "public_subnet_app" {
+  count                   = var.create_public_sub == true ? length(var.cidr_block_public_sub_app) : 0
+  vpc_id                  = aws_vpc.vpc_app.id
+  cidr_block              = element(var.cidr_block_public_sub_app, count.index)
   availability_zone       = element(var.availability_zone, count.index)
   map_public_ip_on_launch = false
 
   tags = {
-    "Name" = lower(format("${var.public_subnet_workload_name}-%s", element(var.zone, count.index)))
+    "Name" = lower(format("${var.public_subnet_app_name}-%s", element(var.zone, count.index)))
     "Tier" = "Public"
     "kubernetes.io/role/elb" = "1"
   }
