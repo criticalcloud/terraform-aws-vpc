@@ -34,7 +34,7 @@ variable "availability_zone" {
 # ZONAS
 variable "zone" {
   type    = list(any)
-  default = ["A", "B", "C"]
+  default = ["a", "b", "c"]
 }
 
 # PRIVATE SUBNET DB NAME

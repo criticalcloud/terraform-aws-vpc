@@ -26,7 +26,7 @@ resource "aws_vpc_peering_connection" "px_workload_db" {
   auto_accept   = true
 
   tags = {
-    Name = "PX-WORKLOAD-DB"
+    Name = "px-workload-db"
   }
 }
 
