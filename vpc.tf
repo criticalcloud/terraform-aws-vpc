@@ -2,6 +2,7 @@
 resource "aws_vpc" "vpc_db" {
   cidr_block         = var.cidr_vpc_db
   enable_dns_support = true
+  enable_dns_hostnames = true
 
   tags = {
     Name = lower(var.vpc_name_db)
@@ -12,6 +13,7 @@ resource "aws_vpc" "vpc_db" {
 resource "aws_vpc" "vpc_app" {
   cidr_block         = var.cidr_vpc_app
   enable_dns_support = true
+  enable_dns_hostnames = true
 
   tags = {
     Name = lower(var.vpc_name_app)
