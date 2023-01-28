@@ -4,7 +4,7 @@ resource "aws_vpc" "vpc_db" {
   enable_dns_support = true
 
   tags = {
-    Name = upper(var.vpc_name_db)
+    Name = lower(var.vpc_name_db)
   }
 }
 
@@ -14,7 +14,7 @@ resource "aws_vpc" "vpc_workload" {
   enable_dns_support = true
 
   tags = {
-    Name = upper(var.vpc_name_workload)
+    Name = lower(var.vpc_name_workload)
   }
 }
 

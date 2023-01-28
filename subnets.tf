@@ -7,7 +7,7 @@ resource "aws_subnet" "private_subnet_db" {
   map_public_ip_on_launch = false
 
   tags = {
-    Name = upper(format("${var.private_subnet_db_name}-%s", element(var.zone, count.index)))
+    Name = lower(format("${var.private_subnet_db_name}-%s", element(var.zone, count.index)))
     Tier = "Private"
   }
 }
@@ -21,7 +21,7 @@ resource "aws_subnet" "private_subnet_workload" {
   map_public_ip_on_launch = false
 
   tags = {
-    "Name" = upper(format("${var.private_subnet_workload_name}-%s", element(var.zone, count.index)))
+    "Name" = lower(format("${var.private_subnet_workload_name}-%s", element(var.zone, count.index)))
     "Tier" = "Private"
     "kubernetes.io/role/internal-elb" = "1"
   }
@@ -36,7 +36,7 @@ resource "aws_subnet" "public_subnet_workload" {
   map_public_ip_on_launch = false
 
   tags = {
-    "Name" = upper(format("${var.public_subnet_workload_name}-%s", element(var.zone, count.index)))
+    "Name" = lower(format("${var.public_subnet_workload_name}-%s", element(var.zone, count.index)))
     "Tier" = "Public"
     "kubernetes.io/role/elb" = "1"
   }
