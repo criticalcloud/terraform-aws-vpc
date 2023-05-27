@@ -10,7 +10,7 @@ resource "aws_internet_gateway" "ig_app" {
 # ELASTIC IP
 resource "aws_eip" "eip_app" {
   count = var.create_public_sub == true ? 1 : 0
-  vpc   = true
+  domain = "vpc"
 
   depends_on = [aws_internet_gateway.ig_app]
 }
