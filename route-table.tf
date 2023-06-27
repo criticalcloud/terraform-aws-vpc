@@ -1,10 +1,11 @@
 # ROUTE TABLE VPC DB SUBNETES PRIVADAS
 resource "aws_route_table" "route_private_db" {
-  vpc_id = aws_vpc.vpc_db.id
+  count  = var.create_vpc_db == true ? 1 : 0
+  vpc_id = aws_vpc.vpc_db[count.index].id
 
   route {
     cidr_block                = var.cidr_vpc_app
-    vpc_peering_connection_id = aws_vpc_peering_connection.px_app_db.id
+    vpc_peering_connection_id = aws_vpc_peering_connection.px_app_db[count.index].id
   }
 
   tags = {
@@ -18,7 +19,7 @@ resource "aws_route_table" "route_private_app" {
 
   route {
     cidr_block                = var.cidr_vpc_db
-    vpc_peering_connection_id = aws_vpc_peering_connection.px_app_db.id
+    vpc_peering_connection_id = aws_vpc_peering_connection.px_app_db[0].id
   }
 
   route {
@@ -48,9 +49,9 @@ resource "aws_route_table" "route_public_app" {
 
 # ADD ROUTE TABLE SUBNETS PRIVADAS DB
 resource "aws_route_table_association" "rta_private_db" {
-  count          = length(var.cidr_block_private_sub_db)
+  count          = var.create_vpc_db == true ? length(var.cidr_block_private_sub_db) : 0
   subnet_id      = aws_subnet.private_subnet_db[count.index].id
-  route_table_id = aws_route_table.route_private_db.id
+  route_table_id = aws_route_table.route_private_db[count.index].id
 }
 
 # ADD ROUTE TABLE SUBNETS PRIVADAS app

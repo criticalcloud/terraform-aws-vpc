@@ -47,6 +47,11 @@ variable "private_subnet_app_name" {}
 variable "public_subnet_app_name" {}
 
 # PUBLIC SUBNET app NAME
+variable "create_vpc_db" {
+  default = true
+}
+
+# PUBLIC SUBNET app NAME
 variable "create_public_sub" {
   default = true
 }

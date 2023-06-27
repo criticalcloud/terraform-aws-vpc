@@ -1,7 +1,7 @@
 # PRIVATE SUBNETS DB
 resource "aws_subnet" "private_subnet_db" {
-  count                   = length(var.cidr_block_private_sub_db)
-  vpc_id                  = aws_vpc.vpc_db.id
+  count                   = var.create_vpc_db == true ? length(var.cidr_block_private_sub_db) : 0
+  vpc_id                  = aws_vpc.vpc_db[0].id
   cidr_block              = element(var.cidr_block_private_sub_db, count.index)
   availability_zone       = element(var.availability_zone, count.index)
   map_public_ip_on_launch = false
