@@ -18,11 +18,6 @@ resource "aws_route_table" "route_private_app" {
   vpc_id = aws_vpc.vpc_app.id
 
   route {
-    cidr_block                = var.cidr_vpc_db
-    vpc_peering_connection_id = aws_vpc_peering_connection.px_app_db[0].id
-  }
-
-  route {
     cidr_block     = "0.0.0.0/0"
     nat_gateway_id = aws_nat_gateway.ng_app[0].id
   }
