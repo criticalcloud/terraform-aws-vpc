@@ -57,7 +57,7 @@ resource "aws_route" "route_public_app_01" {
 resource "aws_route_table_association" "rta_private_db" {
   count          = var.create_vpc_db == true ? length(var.cidr_block_private_sub_db) : 0
   subnet_id      = aws_subnet.private_subnet_db[count.index].id
-  route_table_id = aws_route_table.route_private_db[count.index].id
+  route_table_id = aws_route_table.route_private_db[0].id
 }
 
 # ADD ROUTE TABLE SUBNETS PRIVADAS app
