@@ -9,6 +9,7 @@ resource "aws_route_table" "route_private_db" {
 }
 
 resource "aws_route" "route_private_db_01" {
+  count = var.create_vpc_db == true ? 1 : 0
   route_table_id            = aws_route_table.route_private_db.id
   destination_cidr_block    = var.cidr_vpc_app
   vpc_peering_connection_id =  aws_vpc_peering_connection.px_app_db[count.index].id
@@ -46,7 +47,8 @@ resource "aws_route_table" "route_public_app" {
 }
 
 resource "aws_route" "route_public_app_01" {
-  route_table_id            = aws_route_table.route_public_app.id
+  count  = var.create_public_sub == true ? 1 : 0
+  route_table_id            = aws_route_table.route_public_app[count.index].id
   destination_cidr_block    = "0.0.0.0/0"
   gateway_id                = aws_internet_gateway.ig_app.id
 }
